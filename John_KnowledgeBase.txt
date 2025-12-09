@@ -1,0 +1,5 @@
+disease(meningitis,[fever, seizures, rash, stiff_neck]).
+disease(acne,[papules, cysts, pustules]).
+disease(sinusitis,[blocked_nose, facial_pain, toothache, fever]).
+disease(laryngitis,[sore_throat, fever, hoarseness, coughing]).
+disease(malaria,[fever, aches, chills, vomiting]).
