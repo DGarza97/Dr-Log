@@ -1,5 +1,6 @@
 :- dynamic yes/1, no/1.
 
+%% Clear all recorded answers
 clear_memory :-
     retractall(yes(_)),
     retractall(no(_)).
@@ -23,47 +24,53 @@ disease(acne,[papules, cysts, pustules]).
 disease(laryngitis,[sore_throat, fever, hoarseness, cough]).
 disease(malaria,[fever, aches, chills, vomiting]).
 
-
-%% Ask a symptom only once
+%% Ask a symptom only once (always succeeds)
 ask(Symptom) :-
     ( yes(Symptom) -> true
-    ; no(Symptom)  -> fail
-    ; write('Do you have '), 
-      write(Symptom), 
-      write('? (yes/no): '),
+    ; no(Symptom)  -> true
+    ; write('Do you have '), write(Symptom), write('? (yes/no): '),
       read(Reply),
-      ( Reply == yes -> 
-        asserta(yes(Symptom))
-      ; asserta(no(Symptom)), 
-        fail
+      ( Reply == yes -> asserta(yes(Symptom))
+      ; Reply == no  -> asserta(no(Symptom))
+      ; write('Please answer yes or no.'), nl,
+        ask(Symptom)
       )
     ).
-
 
 %% Check if a disease is still possible
 possible(D) :-
     disease(D, Symptoms),
-    \+ ( yes(S), \+ member(S, Symptoms) ).
+    % All 'yes' symptoms must be present
+    \+ ( yes(S), \+ member(S, Symptoms) ),
+    % None of the 'no' symptoms can be present
+    \+ ( no(S), member(S, Symptoms) ).
 
+%% Count how many diseases a symptom appears in
+symptom_frequency(Sym, Freq) :-
+    findall(D, (disease(D, Symptoms), member(Sym, Symptoms)), Ds),
+    length(Ds, Freq).
 
-%% Choose next symptom to ask
+%% Choose the next symptom to ask (most common first)
 next_symptom_to_ask(S) :-
-    % Gather all possible diseases
     findall(D, possible(D), Ds),
     
-    % Collect all symptoms of remaining diseases
+    % Collect all unasked symptoms of remaining diseases
     findall(Sym,
             (member(D, Ds),
              disease(D, Syms),
-             member(Sym, Syms)),
+             member(Sym, Syms),
+             \+ yes(Sym),
+             \+ no(Sym)),
             AllSyms),
     sort(AllSyms, Unique),
-    
-    % Pick a symptom that hasn't been asked
-    member(S, Unique),
-    \+ yes(S),
-    \+ no(S).
 
+    % Sort by descending frequency
+    map_list_to_pairs(symptom_frequency, Unique, Pairs),
+    keysort(Pairs, SortedAsc),
+    reverse(SortedAsc, SortedDesc),
+
+    % Pick the most frequent symptom
+    SortedDesc = [_Freq-S | _].
 
 %% Diagnosis loop
 diagnose :-
