@@ -1,0 +1,3 @@
+disease(flu,  [fever, cough, fatigue, sneezing]).
+disease(cold, [runny_nose, sore_throat, cough]).
+disease(covid,[fever, cough, loss_of_smell, fatigue]).
