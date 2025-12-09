@@ -1,0 +1,5 @@
+disease(food_poisoning, [nausea, vomiting, diarrhea, stomach_cramps]).
+disease(migraine, [headache, nausea, light_sensitivity, sound_sensitivity]).
+disease(asthma, [shortness_of_breath, wheezing, chest_tightness, coughing]).
+disease(mononucleosis, [fatigue, fever, sore_throat, swollen_lymph_nodes]).
+disease(measles, [fever, cough, runny_nose, skin_rash]).
