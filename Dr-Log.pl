@@ -15,12 +15,12 @@ disease(pneumonia, [fever, cough, chest_pain, shortness_of_breath]).
 disease(allergies, [sneezing, itchy_eyes, runny_nose, congestion]).
 disease(food_poisoning, [nausea, vomiting, diarrhea, stomach_cramps]).
 disease(migraine, [headache, nausea, light_sensitivity, sound_sensitivity]).
-disease(asthma, [shortness_of_breath, wheezing, chest_tightness, coughing]).
+disease(asthma, [shortness_of_breath, wheezing, chest_tightness, cough]).
 disease(mononucleosis, [fatigue, fever, sore_throat, swollen_lymph_nodes]).
 disease(measles, [fever, cough, runny_nose, skin_rash]).
 disease(meningitis,[fever, seizures, rash, stiff_neck]).
 disease(acne,[papules, cysts, pustules]).
-disease(laryngitis,[sore_throat, fever, hoarseness, coughing]).
+disease(laryngitis,[sore_throat, fever, hoarseness, cough]).
 disease(malaria,[fever, aches, chills, vomiting]).
 
 
