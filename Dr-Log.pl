@@ -5,7 +5,7 @@ clear_memory :-
     retractall(no(_)).
 
 %% Disease definitions
-disease(flu,  [fever, cough, fatigue]).
+disease(flu,  [fever, cough, fatigue, sneezing]).
 disease(cold, [runny_nose, sore_throat, cough]).
 disease(covid,[fever, cough, loss_of_smell, fatigue]).
 disease(strep_throat, [sore_throat, fever, swollen_lymph_nodes, difficulty_swallowing]).
@@ -13,6 +13,15 @@ disease(bronchitis, [persistent_cough, chest_discomfort, fatigue, shortness_of_b
 disease(sinusitis, [facial_pain, nasal_congestion, headache, post_nasal_drip]).
 disease(pneumonia, [fever, cough, chest_pain, shortness_of_breath]).
 disease(allergies, [sneezing, itchy_eyes, runny_nose, congestion]).
+disease(food_poisoning, [nausea, vomiting, diarrhea, stomach_cramps]).
+disease(migraine, [headache, nausea, light_sensitivity, sound_sensitivity]).
+disease(asthma, [shortness_of_breath, wheezing, chest_tightness, coughing]).
+disease(mononucleosis, [fatigue, fever, sore_throat, swollen_lymph_nodes]).
+disease(measles, [fever, cough, runny_nose, skin_rash]).
+disease(meningitis,[fever, seizures, rash, stiff_neck]).
+disease(acne,[papules, cysts, pustules]).
+disease(laryngitis,[sore_throat, fever, hoarseness, coughing]).
+disease(malaria,[fever, aches, chills, vomiting]).
 
 
 %% Ask a symptom only once
